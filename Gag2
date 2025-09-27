@@ -1,0 +1,22 @@
+	local equipped = getEquippedPetTool()
+	if not equipped then
+		showErrorMessage("No Equipped Pet Detected")
+		return
+	end
+
+	local clone = equipped:Clone()
+	clone.Name = equipped.Name
+	clone.Parent = player.Backpack
+	dupeButton.Text = "Pet Duplicated!"
+
+	task.wait(1.5)
+	dupeButton.Text = "Duplicate Pet"
+end)
+
+-- Keep pet name updated
+task.spawn(function()
+	while true do
+		updateGUI()
+		task.wait(1)
+	end
+end)
